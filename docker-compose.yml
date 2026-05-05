@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: shopcloud-mysql
+    container_name: mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret_password_aqui}
@@ -21,10 +21,10 @@ services:
 
   postgres:
     image: postgres:16-alpine
-    container_name: shopcloud-postgres
+    container_name: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-shopcloud_postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-shopcloud}
       POSTGRES_USER: ${POSTGRES_USER:-shopcloud}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret_password_aqui}
     ports:
@@ -42,7 +42,7 @@ services:
 
   mongodb:
     image: mongo:7
-    container_name: shopcloud-mongodb
+    container_name: mongodb
     restart: unless-stopped
     command: ["mongod", "--bind_ip_all"]
     ports:
@@ -60,7 +60,7 @@ services:
 
   adminer:
     image: adminer:latest
-    container_name: shopcloud-adminer
+    container_name: adminer
     restart: unless-stopped
     ports:
       - "${ADMINER_PORT:-8080}:8080"
